@@ -1,6 +1,8 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import NewsCard from "./news/NewsCard"
+import EventCard from "./events/EventCard";
+import SignUp from "./auth/SignUp";
 
 export default class ApplicationViews extends Component {
 
@@ -16,8 +18,8 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          exact path="/register" render={props => {
-            return null
+          exact path="/signup" render={props => {
+            return <SignUp {...props} />
             // Remove null and return the component which will handle user registration
           }}
         />
@@ -45,7 +47,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return null
+            return <EventCard {...props} />
             // Remove null and return the component which will show the user's events
           }}
         />
