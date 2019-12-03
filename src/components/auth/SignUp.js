@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 class SignUp extends Component {
     // Setting State to empty strings
     state = {
