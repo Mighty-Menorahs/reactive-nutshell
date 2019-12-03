@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import NewsCard from "./news/NewsCard"
 
 export default class ApplicationViews extends Component {
 
@@ -49,6 +50,12 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        <Route
+        path="/news" render={props => {
+          return <NewsCard 
+          />
+        }}
+        />
       </React.Fragment>
     );
   }
