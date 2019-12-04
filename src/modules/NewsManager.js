@@ -1,4 +1,4 @@
-const baseUrl = `http://5002`
+const baseUrl = `http://localhost:5002`
 
 export default {
     get(userId, newsId) {
