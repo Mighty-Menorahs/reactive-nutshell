@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
+import "./NewsCard.css"
 
 class NewsCard extends Component {
-    state = {
-        userId: "",
-        url: "",
-        title: "",
-        synopsis: "",
-        timestamp: ""
-    }
+  
 
     render() {
         return (
-            <div></div>
+            <div className="card">
+                <ul>
+                <li className="title">{this.props.newsItem.title}</li>
+                <li>{this.props.newsItem.synopsis}</li>
+                <li>{this.props.newsItem.url}</li>
+                </ul>
+
+            </div>
         )
     }
 }

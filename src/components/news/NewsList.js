@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsManager from '../../modules/NewsManager'
+import NewsCard from './NewsCard'
 
 class NewsList extends Component {
     state = {
@@ -9,24 +10,49 @@ class NewsList extends Component {
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
         NewsManager.getAll(currentUser)
-            .then(news => {
+            .then(data => {
                 this.setState({
-                    news: news
+                    news: data.news
                 })
             })
+    }
 
+    deleteNewsArticle = (id) => {
+        NewsManager.delete(id)
+        .then(() => {
+            NewsManager.getAll()
+            .then(data => {
+                this.setState({
+                    news: data.news
+                })
+            })
+        })
     }
 
     render() {
+        console.log(this.state.news)
         return (
-            <>
+            <>  
+            <section>
                 <button
                     id="add-news-article-button"
                     className="button"
-                    onClick={() => { this.history.push("/newsform") }}
+                    onClick={() => { this.props.history.push("/newsform") }}
                 >
                     Add News Article
         </button>
+            </section>
+         
+                <div className="container-cards">
+                    {this.state.news.map(newsItem => 
+                        <NewsCard
+                            key={newsItem.id}
+                            newsItem={newsItem}
+                            deleteNewsArticle={this.deleteNewsArticle}
+                            {...this.props}
+                        />
+                    )}
+                </div>
             </>
         )
     }
