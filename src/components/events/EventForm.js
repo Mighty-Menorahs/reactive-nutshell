@@ -46,6 +46,7 @@ class EventForm extends Component {
                     placeholder="Event"
                     />
                     <label htmlFor="event">Event</label>
+                    
                     <input
                     type="text"
                     required
@@ -54,6 +55,7 @@ class EventForm extends Component {
                     placeholder="Date"
                     />
                     <label htmlFor="date">Date</label>
+                    
                     <input
                     type="text"
                     required
@@ -67,7 +69,7 @@ class EventForm extends Component {
                     <button
                     type="button"
                     disabled={this.state.loadingStatus}
-                    onCLick={this.constructNewEvent}
+                    onClick={this.constructNewEvent}
                     >Submit</button>
                 </div>
             </fieldset>
