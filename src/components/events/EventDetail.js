@@ -36,6 +36,12 @@ class EventDetail extends Component {
     EventsManager.delete(this.props.eventId)
     .then(() => this.props.history.push("/events"))
 }
+
+  handleEdit = () => {
+    this.setState({loadingStatus: true})
+    EventsManager.update(this.props.eventId)
+    .then(() => this.props.history.push("/events"))
+  }
   // This is what is invoked after this AnimalDetail is ran and is the path for the Route to follow and render to the DOM it is being fed the props state from the previous function.
   render() {
     return (
@@ -45,6 +51,7 @@ class EventDetail extends Component {
           </picture>
             <h1>Event: {this.state.event}</h1>
             <h3>Date: {this.state.date}</h3>
+            <h3>Location: {this.state.location}</h3>
             <button type="button" disabled={this.state.loadingStatus} onClick={this.handleDelete}>Delete</button>
         </div>
       </div>
