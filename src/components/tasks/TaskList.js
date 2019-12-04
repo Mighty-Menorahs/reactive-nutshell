@@ -8,8 +8,10 @@ class TaskList extends Component {
         tasks: []
     }
 
-    
 
+    componentDidMount() {
+        TasksManager.get
+    }
 
     render() {
         return (
