@@ -11,7 +11,8 @@ class NewsList extends Component {
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
         NewsManager.getAll(currentUser)
-            .then(data => {
+        .then(data => {
+            console.log("data", data)
                 this.setState({
                     news: data.news
                 })

@@ -1,6 +1,5 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import NewsCard from "./news/NewsCard"
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
 import NewsEditForm from "./news/NewsEditForm"
