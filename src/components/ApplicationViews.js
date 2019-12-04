@@ -1,5 +1,9 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import NewsCard from "./news/NewsCard"
+import NewsList from "./news/NewsList"
+import NewsForm from "./news/NewsForm"
+import EventCard from "./events/EventCard";
 import SignUp from "./auth/SignUp";
 import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
@@ -65,6 +69,16 @@ export default class ApplicationViews extends Component {
         }}
         />
 
+        <Route
+        path="/news" render={props => {
+          return <NewsList {...props}
+          />
+        }}
+        />
+        <Route path="/newsform" render={props => {
+          return <NewsForm {...props} />
+        }}
+        />
         <Route path="/events/new" render={(props) => {
           return <EventForm {...props} />
         }}
