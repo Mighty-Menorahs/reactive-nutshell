@@ -7,6 +7,7 @@ class NewsList extends Component {
         news: []
     }
 
+    
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
         NewsManager.getAll(currentUser)
@@ -18,9 +19,10 @@ class NewsList extends Component {
     }
 
     deleteNewsArticle = (id) => {
+        const currentUser = localStorage.getItem("activeUser")
         NewsManager.delete(id)
         .then(() => {
-            NewsManager.getAll()
+            NewsManager.getAll(currentUser)
             .then(data => {
                 this.setState({
                     news: data.news
