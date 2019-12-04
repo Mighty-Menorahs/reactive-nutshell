@@ -9,5 +9,27 @@ export default {
         return fetch(`${baseUrl}/users/${userId}/?_embed=news`)
         .then(data => data.json())
     },
-    // http://localhost:5002/users/2/?_embed=news
+    post(newItem) {
+        return fetch(`${baseUrl}/news`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"
+        },
+            body: JSON.stringify(newItem)
+    }).then(data => data.json())
+    },
+    update(editedItem) {
+        return fetch(`${baseUrl}/news/${editedItem.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedItem)
+        }).then(data => data.json())
+    },
+    delete(id) {
+        return fetch(`${baseUrl}/news/${id}`, {
+            method: "DELETE"
+        }).then(data => data.json())
+    }
 }
+// http://localhost:5002/users/2/?_embed=news
