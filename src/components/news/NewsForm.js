@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./NewsForms.css"
+import NewsManager from '../../modules/NewsManager'
 
 class NewsForm extends Component {
     state = {
@@ -8,12 +9,13 @@ class NewsForm extends Component {
         url: "",
         timestamp: ""
     }
-    handleFieldChange(event) {
+    handleFieldChange = (event) => {
+        console.log(this.state)
         const stateToChange = {}
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
-    createNewsObject(event) {
+    createNewsObject = (event) => {
         event.preventDefault()
         if (this.state.title === "" || this.state.synopsis === "" || this.state.url === "") {
             alert("Please fill out all fields before hitting 'submit'")
@@ -24,8 +26,12 @@ class NewsForm extends Component {
                 synopsis: this.state.synopsis,
                 url: this.state.url,
                 timestamp: new Date(),
-                userId: localStorage.getItem("activeUser")
+                userId: Number(localStorage.getItem("activeUser"))
             }
+            NewsManager.post(news)
+            .then(() => {
+                {this.props.history.push("/news")}
+            })
         }
     }
 
