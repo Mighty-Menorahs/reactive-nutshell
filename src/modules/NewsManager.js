@@ -1,8 +1,8 @@
 const baseUrl = `http://localhost:5002`
 
 export default {
-    get(userId, newsId) {
-        return fetch(`${baseUrl}/users/${userId}/?_embed=news/${newsId}`)
+    get(newsId) {
+        return fetch(`${baseUrl}/news/${newsId}`)
         .then(data => data.json())
     },
     getAll(userId) {

@@ -2,7 +2,6 @@
 
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import NewsCard from "./news/NewsCard"
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
 import NewsEditForm from "./news/NewsEditForm"
@@ -14,6 +13,8 @@ import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
 import MessageCard from "./messages/MessageCard";
 
+import TaskList from "./tasks/TaskList"
+import TaskForm from "./tasks/TaskForm"
 export default class ApplicationViews extends Component {
 
   render() {
@@ -50,7 +51,14 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
-            return null
+            return <TaskList {...props} />
+            // Remove null and return the component which will show the user's tasks
+          }}
+        />
+
+        <Route
+          path="/taskform" render={props => {
+            return <TaskForm {...props} />
             // Remove null and return the component which will show the user's tasks
           }}
         />
