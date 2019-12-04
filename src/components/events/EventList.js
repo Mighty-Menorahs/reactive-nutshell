@@ -40,7 +40,7 @@ import React, { Component } from 'react'
         return(
           <React.Fragment>
             <section className="section-content">
-              <button type="button" className="btn"
+              <button type="button" className="btn" class="text-primary bg-dark"
               onClick={() => {this.props.history.push("/events/new")}}>
               Admit Event
           </button>
