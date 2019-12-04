@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TaskCard from './TaskCard'
 import TasksManager from '../../modules/TasksManager'
 
-class TaskList extends Component {
+export default class TaskList extends Component {
 
     state = {
         tasks: []
@@ -10,7 +10,8 @@ class TaskList extends Component {
 
 
     componentDidMount() {
-        TasksManager.get
+        const userId = localStorage.getItem("activeUser")
+        TasksManager.getUserTasks(userId)
     }
 
     render() {
@@ -18,6 +19,7 @@ class TaskList extends Component {
             <>
                 <button type="button" onClick={() => { }}>Add New Task</button>
                 <div className="container-cards">
+                    <h2>My To Do List</h2>
                     {this.state.tasks.map(task =>
                         <TaskCard
                             key={task.id}

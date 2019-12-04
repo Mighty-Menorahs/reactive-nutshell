@@ -5,7 +5,7 @@ import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
 import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
-
+import TaskList from "./tasks/TaskList"
 export default class ApplicationViews extends Component {
 
   render() {
