@@ -1,0 +1,12 @@
+fieldset {
+    display: flex;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    width: 12%;
+    flex-wrap: wrap
+}
+.formButton {
+    align-content: right;
+}
