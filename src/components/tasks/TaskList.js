@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TaskCard from './TaskCard'
-import TasksManager from '../../modules/TasksManager'
+import API from '../../modules/TasksManager'
 
 export default class TaskList extends Component {
 
@@ -10,14 +10,24 @@ export default class TaskList extends Component {
 
 
     componentDidMount() {
-        const userId = localStorage.getItem("activeUser")
-        TasksManager.getUserTasks(userId)
+        const appUserId = localStorage.getItem("activeUser")
+        console.log(appUserId)
+        API.getUserTasks(appUserId)
+        .then((taskArray) => {
+            console.log(taskArray)
+            this.setState({
+                tasks: taskArray
+            })
+        })
     }
 
     render() {
+        console.log(this.state.tasks)
         return (
             <>
-                <button type="button" onClick={() => { }}>Add New Task</button>
+                <button type="button" 
+                // onClick={() => { }}
+                >Add New Task</button>
                 <div className="container-cards">
                     <h2>My To Do List</h2>
                     {this.state.tasks.map(task =>
