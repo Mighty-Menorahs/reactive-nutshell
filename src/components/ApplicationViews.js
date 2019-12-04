@@ -1,7 +1,10 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import EventCard from "./events/EventCard";
 import SignUp from "./auth/SignUp";
+import EventList from "./events/EventList";
+import EventDetail from "./events/EventDetail";
+import EventEditForm from "./events/EventEditForm";
+import EventForm from "./events/EventForm";
 
 export default class ApplicationViews extends Component {
 
@@ -44,13 +47,28 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
+        <Route exact
           path="/events" render={props => {
-            return <EventCard {...props} />
+            return <EventList {...props} />
             // Remove null and return the component which will show the user's events
           }}
         />
+        
+        <Route exact path="/events/:eventId(\d+)" render={props => {
+          return <EventDetail eventId={parseInt(props.match.params.eventId)}
+        {...props}
+        />
+        }} />
+        
+        <Route exact path="/events/:eventId(\d+)/edit" render={props => {
+          return <EventEditForm {...props} />
+        }}
+        />
 
+        <Route path="/events/new" render={(props) => {
+          return <EventForm {...props} />
+        }}
+        />
       </React.Fragment>
     );
   }

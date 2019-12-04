@@ -2,7 +2,7 @@ import React, { Component } from 'react'
     //import the components we will need
     import EventCard from './EventCard'
     import EventsManager from '../../modules/EventsManager'
-    import '../event/Event.css';
+    
 
     class EventList extends Component {
         //define what this component needs to render
@@ -13,44 +13,44 @@ import React, { Component } from 'react'
     componentDidMount(){
         console.log("Event LIST: ComponentDidMount");
         //getAll from AnimalManager and hang on to that data; put it in state
-        AnimalManager.getAll()
-        .then((animalsArray) => {
+        EventsManager.getAll()
+        .then((eventsArray) => {
             this.setState({
-                animals: animalsArray
+                events: eventsArray
             })
         })
     }
     
-    deleteAnimal = id => {
-      AnimalManager.delete(id)
+    deleteEvent = id => {
+      EventsManager.delete(id)
       .then(() => {
-        AnimalManager.getAll()
-        .then((newAnimals) => {
+        EventsManager.getAll()
+        .then((newevents) => {
           this.setState({
-              animals: newAnimals
+              events: newevents
           })
         })
       })
     }
 
     render() {
-        console.log("AnimalList: Render");
-        console.log(this.state.animals)
+        console.log("EventsList: Render");
+        console.log(this.state.events)
         
         return(
           <React.Fragment>
             <section className="section-content">
               <button type="button" className="btn"
-              onClick={() => {this.props.history.push("/animals/new")}}>
-              Admit Animal
+              onClick={() => {this.props.history.push("/events/new")}}>
+              Admit event
           </button>
             </section>
           <div className="container-cards">
-            {this.state.animals.map((animal) =>
-              <AnimalCard 
-              key={animal.id} 
-              animal={animal} 
-              deleteAnimal={this.deleteAnimal}
+            {this.state.events.map((event) =>
+              <EventCard 
+              key={event.id} 
+              event={event} 
+              deleteEvent={this.deleteEvent}
               {...this.props}
               />
               )}
@@ -70,4 +70,4 @@ import React, { Component } from 'react'
     // }
     }
 
-export default AnimalList;
+export default EventList;

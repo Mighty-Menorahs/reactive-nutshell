@@ -1,7 +1,7 @@
 // Pulling Component and Link from react Native. ALso importing AnimalManager or my API handler in for use later
 import React, { Component } from 'react';
-import EventsManger from '../../modules/EventsManager';
-import './EventsDetail.css'
+import EventsManager from '../../modules/EventsManager';
+
 
 // Declaring a class/object with the ability to use Component Methods from React
 class EventDetail extends Component {
@@ -21,7 +21,7 @@ class EventDetail extends Component {
     EventsManager.get(this.props.eventId)
     .then((event) => {
       this.setState({
-        event: event.name,
+        event: event.event,
         date: event.date,
         location: event.location,
         loadingStatus: false
@@ -36,6 +36,12 @@ class EventDetail extends Component {
     EventsManager.delete(this.props.eventId)
     .then(() => this.props.history.push("/events"))
 }
+
+  handleEdit = () => {
+    this.setState({loadingStatus: true})
+    EventsManager.update(this.props.eventId)
+    .then(() => this.props.history.push("/events"))
+  }
   // This is what is invoked after this AnimalDetail is ran and is the path for the Route to follow and render to the DOM it is being fed the props state from the previous function.
   render() {
     return (
@@ -43,8 +49,9 @@ class EventDetail extends Component {
         <div className="card-content">
           <picture>
           </picture>
-            <h1>Event: <span style={{ color: 'darkslategrey' }}>{this.state.event}</span></h1>
+            <h1>Event: {this.state.event}</h1>
             <h3>Date: {this.state.date}</h3>
+            <h3>Location: {this.state.location}</h3>
             <button type="button" disabled={this.state.loadingStatus} onClick={this.handleDelete}>Delete</button>
         </div>
       </div>
