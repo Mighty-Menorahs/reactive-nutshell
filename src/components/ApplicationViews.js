@@ -1,9 +1,7 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import NewsCard from "./news/NewsCard"
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
-import EventCard from "./events/EventCard";
 import SignUp from "./auth/SignUp";
 import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
