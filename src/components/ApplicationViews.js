@@ -9,6 +9,7 @@ import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
 import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
+import MessageCard from "./messages/MessageCard";
 
 export default class ApplicationViews extends Component {
 
@@ -39,7 +40,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return null
+            return <MessageCard {...props} />
             // Remove null and return the component which will show the messages
           }}
         />
