@@ -29,9 +29,7 @@ class NewsForm extends Component {
                 userId: Number(localStorage.getItem("activeUser"))
             }
             NewsManager.post(news)
-            .then(() => {
-                {this.props.history.push("/news")}
-            })
+            .then(() => {this.props.history.push("/news")})
         }
     }
 
