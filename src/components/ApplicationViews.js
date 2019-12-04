@@ -32,14 +32,14 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return null
+            return 
             // Remove null and return the component which will show the messages
           }}
         />
 
         <Route
           path="/tasks" render={props => {
-            return null
+            return <TaskList {...props} />
             // Remove null and return the component which will show the user's tasks
           }}
         />
