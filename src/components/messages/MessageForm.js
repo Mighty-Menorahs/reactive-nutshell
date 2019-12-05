@@ -20,7 +20,7 @@ class MessageForm extends Component {
         if (this.state.message === "") {
             window.alert("Don't be shy...say something!");
         } else {
-            this.setState({ loadingStatus: true});
+            this.setState({ loadingStatus: true });
             const message = {
                 message: this.state.message,
                 timeStamp: new Date(),
@@ -28,45 +28,43 @@ class MessageForm extends Component {
             };
 
             MessagesManager.post(message)
-            .then(() => this.props.history.push("/messages"));
+                .then(() => this.props.history.push("/messages"));
         }
     };
 
-    render(){
+    render() {
         return (
-        <>
-        <form>
-            <fieldset>
-                <div className="formgrid">
-                    <input
-                    type="text"
-                    required
-                    onChange={this.messageFieldChange}
-                    id="event"
-                    placeholder="Event"
-                    />
-                    <label htmlFor="event">Message</label>
-                    
-                    <input
-                    type="text"
-                    required
-                    onChange={this.messageFieldChange}
-                    id="date"
-                    placeholder="Date"
-                    />
-                    <label htmlFor="date">Time Stamp</label>
-                </div>
+            <>
+                <h3>Add New Message</h3>
+                <form>
+                    <fieldset>
+                        <div className="messageformbox">
+                            <label htmlFor="new-message">Whatcha thinkin about?</label>
+                            <textarea
+                                rows="5"
+                                cols="75"
+                                required
+                                onChange={this.messageFieldChange}
+                                id="messageform"
+                                placeholder="Add text here..."
+                            />
+                        </div>
 
-                <div className="alignRight">
-                    <button
-                    type="button"
-                    disabled={this.state.loadingStatus}
-                    onClick={this.addNewMessage}
-                    >Submit</button>
-                </div>
-            </fieldset>
-        </form>
-        </>
+
+
+                        <div className="formButton">
+                            <button
+                                type="button"
+                                id="addmessage"
+                                disabled={this.state.loadingStatus}
+                                onClick={this.addNewMessage}
+                            >
+                                Add Message
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </>
         )
     }
 }

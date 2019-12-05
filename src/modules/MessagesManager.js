@@ -3,20 +3,48 @@
 const baseURL = "http://localhost:5002"
 
 export default {
+    /************************************************
+     Fetch a single message from database.json 
+     ************************************************/
+    get(messageId) {
+        return fetch(`${baseURL}/messages/${messageId}`)
+            .then(result => result.json())
+    },
 
     /************************************************
     Fetch all messages currently in database.json
     *************************************************/
     getAll() {
-        return fetch(`${baseURL}/messages/`)
+        console.log("getAll successful")
+        return fetch(`${baseURL}/messages?_expand=user`)
             .then(result => result.json())
     },
 
     /************************************************
-     Fetch a single message from database.json 
+     POST a new message entry to the database.json
      ************************************************/
-    get(id) {
-        return fetch(`${baseURL}/messages/${id}`)
+    post(newMessage) {
+        return fetch(`${baseURL}/messages`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMessage)
+        })
+            .then(result => result.json())
+    },
+
+    /**********************************************************
+     Fetch a single message entry, edit it, and UPDATE the post
+     **********************************************************/
+    update(editedMessage) {
+        return fetch(`${baseURL}/messages/${editedMessage.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedMessage)
+        })
             .then(result => result.json())
     },
 
@@ -27,33 +55,6 @@ export default {
         return fetch(`${baseURL}/messages/${id}`, {
             method: "DELETE"
         })
-    },
-
-    /************************************************
-     POST a new message entry to the database.json
-     ************************************************/
-    post(newEvent) {
-        return fetch(`${baseURL}/messages`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newEvent)
-    })
         .then(result => result.json())
-    },
-
-    /**********************************************************
-     Fetch a single message entry, edit it, and UPDATE the post
-     **********************************************************/
-    update(editedMessage) {
-        return fetch(`${baseURL}/messages/${editedMessage.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(editedMessage)
-        })
-        .then(result => result.json())
-      }
     }
+}
