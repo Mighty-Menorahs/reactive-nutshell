@@ -11,6 +11,7 @@ import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
 import TaskList from "./tasks/TaskList"
 import TaskForm from "./tasks/TaskForm"
+import FriendsList from "./friends/FriendsList"
 
 export default class ApplicationViews extends Component {
 
@@ -34,8 +35,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return <FriendsList {...props} />
           }}
         />
 
