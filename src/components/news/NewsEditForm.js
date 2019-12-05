@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 import NewsManager from '../../modules/NewsManager'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}));
 
 class NewsEditForm extends Component {
     state = {
@@ -24,7 +34,7 @@ class NewsEditForm extends Component {
     }
     handleFieldChange = event => {
         const toChangeState = {}
-        toChangeState[event.target.id] = event.target.value
+        toChangeState[event.target.className] = event.target.value
         this.setState(toChangeState)
     }
     updateNewsItem = event => {
@@ -47,15 +57,15 @@ class NewsEditForm extends Component {
     render() {
         return (
             <>
-                <form>
+                <form noValidate autoComplete="off">
                     <h2 className="form-heading">Edit News Article</h2>
                     <fieldset>
                         <div className="form">
                             <label htmlFor="title">Title
                     </label>
                             <input
-                                type="text"
                                 id="title"
+                                type="text"
                                 defaultValue={this.state.title}
                                 onChange={this.handleFieldChange}
                             />
