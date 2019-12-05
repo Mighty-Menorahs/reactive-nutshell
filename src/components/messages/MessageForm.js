@@ -5,7 +5,7 @@ class MessageForm extends Component {
     state = {
         message: "",
         timeStamp: "",
-        loadingStatus: false,
+        // loadingStatus: false,
     }
 
     messageFieldChange = event => {
@@ -20,7 +20,7 @@ class MessageForm extends Component {
         if (this.state.message === "") {
             window.alert("Don't be shy...say something!");
         } else {
-            this.setState({ loadingStatus: true });
+            // this.setState({ loadingStatus: true });
             const message = {
                 message: this.state.message,
                 timeStamp: new Date(),
