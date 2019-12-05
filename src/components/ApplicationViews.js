@@ -5,13 +5,11 @@ import React, { Component } from "react";
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
 import NewsEditForm from "./news/NewsEditForm"
-import EventCard from "./events/EventCard";
 import SignUp from "./auth/SignUp";
 import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
 import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
-import MessageCard from "./messages/MessageCard";
 import MessageList from "./messages/MessageList";
 import MessageForm from "./messages/MessageForm";
 import TaskList from "./tasks/TaskList"
@@ -44,18 +42,12 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
-          path="/messages" render={props => {
-            return <MessageCard {...props} />
-            // Remove null and return the component which will show the messages
-          }}
-        />
-
         <Route exact path="/messages" render={props => {
           return <MessageList {...props}
           />
         }}
         />
+
         <Route path="/messagesform" render={props => {
           return <MessageForm {...props} />
         }}

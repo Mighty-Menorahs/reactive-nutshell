@@ -47,7 +47,7 @@ class MessageList extends Component {
                 </section>
 
                 <div>
-                    {this.state.messages.map((messageEntry) =>
+                    {this.state.messages.map(messageEntry =>
                         <MessageCard
                             key={messageEntry.id}
                             messageEntry={messageEntry}
