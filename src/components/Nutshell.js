@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
+import UsersManager from "../modules/UsersManager";
 import "./Nutshell.css";
 
 class Nutshell extends Component {
   state ={
-    user: false
+    user: false,
+    users: []
 }
 
 // Check Local Storage for matching Credentials
@@ -27,9 +29,12 @@ setUser = (signupObj) => {
 componentDidMount(){
   this.setState({
     user: this.isSignedup()
-  })
+  });
   // localStorage.setItem("activeUser", 1)
+  UsersManager.getAllUsers()
+    .then(users => this.setState({users: users}))
 }
+
 
 render() {
     return (

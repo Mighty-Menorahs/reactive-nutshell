@@ -6,7 +6,8 @@ class SignUp extends Component {
     state = {
         email: "",
         username: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     }
 
     // Update State as the Registration Input Field is Utilized
@@ -18,6 +19,7 @@ class SignUp extends Component {
     // Sign Up function and stop of click before ready
     handleSignUpSubmit = (event) => {
         event.preventDefault()
+        if ( this.state.password === this.state.confirmPassword ) {
         // Storing The email and password and Username in local storage for customer.
     localStorage.setItem(
         "credentials",
@@ -28,6 +30,9 @@ class SignUp extends Component {
         })
     )
     this.props.history.push("/users");
+    } else {
+        window.alert("Why you suck, ?");
+    }
     }
     render() {
         return (
@@ -55,7 +60,7 @@ class SignUp extends Component {
                     required="" autoFocus="" />
             <label htmlFor="confirm-password">Confirm Password</label>
             <input type="password"
-            id="confirm-password"
+            id="confirmPassword"
             placeholder="Confirm Password"
             required autoFocus="" />
                 </div>
