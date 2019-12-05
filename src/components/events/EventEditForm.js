@@ -62,7 +62,7 @@ class EventEditForm extends Component {
                     <label htmlFor="event">Event</label>
 
                     <input
-                        type="text"
+                        type="date"
                         required
                         className="form-control"
                         onChange={this.eventFieldChange}
