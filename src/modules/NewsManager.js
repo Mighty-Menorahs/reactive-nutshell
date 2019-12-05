@@ -5,8 +5,8 @@ export default {
         return fetch(`${baseUrl}/news/${newsId}`)
         .then(data => data.json())
     },
-    getAll() {
-        return fetch(`${baseUrl}/news?_sort=timestamp`)
+    getAll(userId) {
+        return fetch(`${baseUrl}/users/${userId}/news?_sort=timestamp`)
         .then(data => data.json())
     },
     post(newItem) {
