@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewsManager from '../../modules/NewsManager'
 import NewsCard from './NewsCard'
+import Button from '@material-ui/core/Button'
 
 class NewsList extends Component {
     state = {
@@ -37,13 +38,14 @@ class NewsList extends Component {
         return (
             <>  
             <section>
-                <button
+                <Button
+                    color="secondary"
                     id="add-news-article-button"
                     className="button"
                     onClick={() => { this.props.history.push("/newsform") }}
                 >
                     Add News Article
-        </button>
+        </Button>
             </section>
          
                 <div className="container-cards">
