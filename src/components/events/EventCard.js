@@ -11,8 +11,10 @@ class EventCard extends Component {
             <div className="card-content">
             {/* Each Element has its corresponding Data passed to it through props from parent element. So h1 gets passed event.event because that is how it's defined earlier, naming conventions are a nightmare with this one. NOte for the future */}
             <h1>Event: {this.props.event.event}</h1>
+            {/* this.props.event.date passing props into element tags and adding appropriate locations in the object. */}
                 <h3>Date: {this.props.event.date}</h3>
                 <h3>Location: {this.props.event.location}</h3>
+                {/* End of Elements and beginning of adding OnClick event listener to buttons and button creation.  */}
                 <button className="text-primary bg-dark" type="button" onClick={() => this.props.deleteEvent(this.props.event.id)}>Delete</button>
                 <button className="text-primary bg-dark" type="button" onClick={() => {this.props.history.push(`/events/${this.props.event.id}/edit`)}}>Edit</button>
                 <Link to={`/events/${this.props.event.id}`}><button className="text-primary bg-dark">Detail View</button></Link>
