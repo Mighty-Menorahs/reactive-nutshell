@@ -11,10 +11,10 @@ export default class TaskCard extends Component {
                         <input type="checkbox" name="checkbox"></input>
                             <label htmlFor="checkbox">Done!</label>
 
-                        <h3>Task:
+                       <Link to={`tasks/taskedit`}> <h3>Task:
 
-     {/* onClick={() => }> */}
-                            {this.props.task.task}</h3>
+     
+                            {this.props.task.task}</h3></Link>
 
                         <p>Expected Date of Completion: {this.props.task.date}</p>
 

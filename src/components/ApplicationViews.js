@@ -58,6 +58,12 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        <Route
+          path="/tasks/taskedit" render={props => {
+            return <TaskEdit {...props} />
+          }}
+        />
+
         <Route exact
           path="/events" render={props => {
             return <EventList {...props} />
