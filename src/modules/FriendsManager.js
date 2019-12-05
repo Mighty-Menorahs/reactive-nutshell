@@ -1,7 +1,7 @@
 const baseUrl = `http://localhost:5002`
 export default {
     getAll(userId) {
-        return fetch(`${baseUrl}/friends?_embed=user`)
+        return fetch(`${baseUrl}/friends/?_expand=user`)
         .then(data => data.json())
     },
     post(newFriend) {

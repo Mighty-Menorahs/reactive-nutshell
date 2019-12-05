@@ -3,6 +3,7 @@ import FriendsManager from "../../modules/FriendsManager"
 
 class FriendsList extends Component {
     state = {
+        friends: [],
         username: "",
         userId: "",
         loggedInUserId: "",
