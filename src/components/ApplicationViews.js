@@ -20,7 +20,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return <Home />
+            return <Home {...props} />
             // Remove null and return the component which will show news articles
           }}
         />
@@ -95,6 +95,10 @@ export default class ApplicationViews extends Component {
         />
         <Route path="/events/new" render={(props) => {
           return <EventForm {...props} />
+        }}
+        />
+        <Route path="/users" render={(props) => {
+          return <Home {...props} />
         }}
         />
       </React.Fragment>
