@@ -38,9 +38,9 @@ export default class TaskList extends Component {
             })
     }
 
-    editTaskName = (taskId) = {
+    // editTaskName = (taskId) = {
         
-    }
+    // }
 
     render() {
         console.log(this.state.tasks)

@@ -14,6 +14,7 @@ import MessageList from "./messages/MessageList";
 import MessageForm from "./messages/MessageForm";
 import TaskList from "./tasks/TaskList"
 import TaskForm from "./tasks/TaskForm"
+import TaskEdit from "./tasks/TaskEdit"
 
 export default class ApplicationViews extends Component {
 
@@ -67,7 +68,7 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/tasks/taskedit" render={props => {
+          path="/tasks/taskId(\d+)/edit" render={props => {
             return <TaskEdit {...props} />
           }}
         />

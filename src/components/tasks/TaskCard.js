@@ -11,7 +11,7 @@ export default class TaskCard extends Component {
                         <input type="checkbox" name="checkbox"></input>
                             <label htmlFor="checkbox">Done!</label>
 
-                       <Link to={`tasks/taskedit`}> 
+                       <Link to={`/tasks/${this.props.task.id}/edit`}> 
                        <h3>Task:
                            {/* <span onClick={this.props.editTaskName(this.props.task.id)} hidden={this.state.showInputField}> */}
                                {this.props.task.task}

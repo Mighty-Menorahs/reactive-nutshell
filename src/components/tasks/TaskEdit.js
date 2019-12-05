@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import API from '../../modules/TasksManager'
 
-class TaskEdit extends Component {
+export default class TaskEdit extends Component {
     state = {
         task: "",
         date: "",
@@ -9,7 +9,7 @@ class TaskEdit extends Component {
 
     }
     componentDidMount() {
-        API.
+        API.getSingleTask(this.props.match.params.taskId)
     }
 
     render() {

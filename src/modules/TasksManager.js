@@ -6,6 +6,10 @@ export default {
             .then(data => data.json())
     },
 
+    getSingleTask(taskId) {
+        return fetch(`${baseUrl}tasks/${taskId}`)
+    },
+
     post(task) {
         return fetch(`${baseUrl}tasks`,
             {
