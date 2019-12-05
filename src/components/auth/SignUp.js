@@ -32,7 +32,7 @@ class SignUp extends Component {
     render() {
         return (
          <>
-            <form>
+            <form onSubmit={this.handleSignUpSubmit}>
             <fieldset>
             <div className="formgrid">
                 <label htmlFor="inputEmail">Email Address</label>
@@ -59,7 +59,7 @@ class SignUp extends Component {
             placeholder="Confirm Password"
             required autoFocus="" />
                 </div>
-                <button id="register-button" className="button" type="button">Submit</button>
+                <button id="register-button" className="button" type="submit">Submit</button>
             </fieldset>
         </form>
         </>
