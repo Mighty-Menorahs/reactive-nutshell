@@ -21,17 +21,22 @@ class SignUp extends Component {
         event.preventDefault()
         if ( this.state.password === this.state.confirmPassword ) {
         // Storing The email and password and Username in local storage for customer.
-    localStorage.setItem(
-        "credentials",
-        JSON.stringify({
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password
-        })
-    )
+    // localStorage.setItem(
+    //     "credentials",
+    //     JSON.stringify({
+    //         email: this.state.email,
+    //         username: this.state.username,
+    //         password: this.state.password
+    //     })
+    // )
+    this.props.setUser({
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+    })
     this.props.history.push("/users");
     } else {
-        window.alert("Why you suck, ?");
+        window.alert("Why you suck, fields not match! Retry Password?");
     }
     }
     render() {
@@ -59,7 +64,7 @@ class SignUp extends Component {
                     placeholder="Password"
                     required="" autoFocus="" />
             <label htmlFor="confirm-password">Confirm Password</label>
-            <input type="password"
+            <input onChange={this.signUpFieldChange} type="password"
             id="confirmPassword"
             placeholder="Confirm Password"
             required autoFocus="" />

@@ -17,7 +17,7 @@ isSignedup = () => localStorage.getItem("credentials") !== null
 
 setUser = (signupObj) => {
   // Set Store Email and password in local storage
-  sessionStorage.setItem(
+  localStorage.setItem(
     "credentials",
     JSON.stringify(signupObj)
   )
