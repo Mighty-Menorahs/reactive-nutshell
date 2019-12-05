@@ -1,26 +1,36 @@
 import React, { Component } from 'react'
 import NewsManager from '../../modules/NewsManager'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}));
 
 class NewsEditForm extends Component {
     state = {
         title: "",
         synopsis: "",
         url: "",
-        timeStamp: ""
+        timestamp: ""
     }
     componentDidMount() {
         NewsManager.get(this.props.match.params.newsId)
-        .then(data => {
-            console.log(data)
-            this.setState({
-                title: data.title,
-                synopsis: data.synopsis,
-                url: data.url,
-                timeStamp: data.timeStamp
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    title: data.title,
+                    synopsis: data.synopsis,
+                    url: data.url,
+                    timestamp: data.timestamp
 
+                })
             })
-        })
     }
     handleFieldChange = event => {
         const toChangeState = {}
@@ -36,26 +46,35 @@ class NewsEditForm extends Component {
                 title: this.state.title,
                 synopsis: this.state.synopsis,
                 url: this.state.url,
-                timeStamp: this.state.timeStamp,
+                timestamp: this.state.timestamp,
                 id: Number(this.props.match.params.newsId),
                 userId: Number(localStorage.getItem("activeUser"))
             }
             NewsManager.update(news)
-            .then(() => this.props.history.push("/news"))
+                .then(() => this.props.history.push("/news"))
         }
     }
     render() {
         return (
             <>
-                <form>
+                <form noValidate autoComplete="off">
+                    <h2 className="form-heading">Edit News Article</h2>
                     <fieldset>
                         <div className="form">
                             <label htmlFor="title">Title
                     </label>
                             <input
-                                type="text"
                                 id="title"
+                                type="text"
                                 defaultValue={this.state.title}
+                                onChange={this.handleFieldChange}
+                            />
+                            <label htmlFor="url">URL
+                    </label>
+                            <input
+                                type="text"
+                                defaultValue={this.state.url}
+                                id="url"
                                 onChange={this.handleFieldChange}
                             />
                             <label htmlFor="synopsis">Synopsis
@@ -66,16 +85,8 @@ class NewsEditForm extends Component {
                                 defaultValue={this.state.synopsis}
                                 onChange={this.handleFieldChange}
                             />
-                            <label htmlFor="url">URL
-                            </label>
-                            <input
-                                type="text"
-                                defaultValue={this.state.url}
-                                id="url"
-                                onChange={this.handleFieldChange}
-                            />
                         </div>
-                        <div className="formButton">
+                        <div className="formButton form">
                             <button
                                 className="button"
                                 onClick={this.updateNewsItem}

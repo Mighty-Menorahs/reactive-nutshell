@@ -6,7 +6,7 @@ export default {
         .then(data => data.json())
     },
     getAll(userId) {
-        return fetch(`${baseUrl}/users/${userId}/?_embed=news`)
+        return fetch(`${baseUrl}/users/${userId}/news?_sort=timestamp`)
         .then(data => data.json())
     },
     post(newItem) {
