@@ -6,6 +6,10 @@ export default {
             .then(data => data.json())
     },
 
+    getSingleTask(taskId) {
+        return fetch(`${baseUrl}tasks/${taskId}`)
+    },
+
     post(task) {
         return fetch(`${baseUrl}tasks`,
             {
@@ -23,6 +27,15 @@ export default {
             method: "DELETE",
         })
         .then(result => result.json())
-    }
+    },
 
+    update(editedTask) {
+        return fetch(`${baseUrl}tasks/${editedTask.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedTask)
+        }).then(data => data.json())
+    }
 }
