@@ -59,17 +59,17 @@ class EventEditForm extends Component {
                         id="event"
                         value={this.state.event}
                     />
-                    <label htmlFor="event">Event</label>
+                    <label htmlFor="event">Event Title</label>
 
                     <input
-                        type="text"
+                        type="date"
                         required
                         className="form-control"
                         onChange={this.eventFieldChange}
                         id="date"
                         value={this.state.date}
                     />
-                    <label htmlFor="date">Date</label>
+                    <label htmlFor="date">Event Date</label>
                     </div>
                     <div className="alignRight">
                     <button

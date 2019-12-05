@@ -48,7 +48,7 @@ class EventForm extends Component {
                     <label htmlFor="event">Event</label>
                     
                     <input
-                    type="text"
+                    type="date"
                     required
                     onChange={this.eventFieldChange}
                     id="date"
