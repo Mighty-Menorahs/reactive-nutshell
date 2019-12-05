@@ -10,7 +10,8 @@ class FriendsList extends Component {
     }
 
     componentDidMount() {
-
+        const currentUser = localStorage.getItem("activeUser")
+        FriendsManager.getAll(currentUser)
     }
     handleFieldChange = (event) => {
         const stateToChange = {}
