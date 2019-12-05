@@ -3,6 +3,7 @@ import FriendsManager from "../../modules/FriendsManager"
 
 class FriendsList extends Component {
     state = {
+        username: "",
         userId: "",
         loggedInUserId: "",
         showInputField: false
@@ -26,7 +27,7 @@ class FriendsList extends Component {
             const currentUser = localStorage.getItem("activeUser")
             const friend = {
                 userId: this.state.userId,
-                loggedInUserId: currentUser
+                loggedInUserId: Number(currentUser)
             }
             FriendsManager.post(friend)
             .then(friends => FriendsManager.getAll(currentUser))
@@ -40,7 +41,7 @@ class FriendsList extends Component {
                         onClick={this.showField}
                     >Add New Friend</button>
                     <input
-                        id="userId"
+                        id="username"
                         hidden={!this.state.showInputField}
                         onChange={this.handleFieldChange}
                     />
