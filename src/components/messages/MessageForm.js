@@ -9,6 +9,7 @@ class MessageForm extends Component {
     }
 
     messageFieldChange = event => {
+        console.log(this.state)
         const stateToChange = {};
         stateToChange[event.target.id] = event.target.value;
         this.setState(stateToChange);
@@ -16,13 +17,14 @@ class MessageForm extends Component {
 
     addNewMessage = event => {
         event.preventDefault();
-        if (this.state.message === "" || this.state.timeStamp === "") {
+        if (this.state.message === "") {
             window.alert("Don't be shy...say something!");
         } else {
             this.setState({ loadingStatus: true});
             const message = {
                 message: this.state.message,
-                timeStamp: this.state.timeStamp,
+                timeStamp: new Date(),
+                userId: Number(localStorage.getItem("activeUser"))
             };
 
             MessagesManager.post(message)

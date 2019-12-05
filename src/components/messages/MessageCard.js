@@ -11,7 +11,6 @@ class MessageCard extends Component {
                     <textarea placeholder="Enter your message..."></textarea>
                     <button type="button">Edit</button>
                     <button type="button">Delete</button>
-                    <button type="button">Detail View</button>
                 </div>
             </div>
         )
