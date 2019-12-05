@@ -20,7 +20,7 @@ class NewsForm extends Component {
         if (this.state.title === "" || this.state.synopsis === "" || this.state.url === "") {
             alert("Please fill out all fields before hitting 'submit'")
         } else {
-            
+
             const news = {
                 title: this.state.title,
                 synopsis: this.state.synopsis,
@@ -29,7 +29,7 @@ class NewsForm extends Component {
                 userId: Number(localStorage.getItem("activeUser"))
             }
             NewsManager.post(news)
-            .then(() => {this.props.history.push("/news")})
+                .then(() => { this.props.history.push("/news") })
         }
     }
 
@@ -37,9 +37,9 @@ class NewsForm extends Component {
         console.log(this.state)
         return (
             <>
-            <h2>Add a News Article</h2>
                 <form>
-                    <fieldset>
+                <h2 className="form-heading">Add a News Article</h2>
+                    <fieldset className="form-container">
                         <div className="form">
                             <label
                                 htmlFor="title"
@@ -47,6 +47,16 @@ class NewsForm extends Component {
                     </label>
                             <input
                                 id="title"
+                                type="text"
+                                onChange={this.handleFieldChange}
+                            />
+                            <label
+                                htmlFor="url"
+                            >
+                                URL
+                    </label>
+                            <input
+                                id="url"
                                 type="text"
                                 onChange={this.handleFieldChange}
                             />
@@ -59,22 +69,12 @@ class NewsForm extends Component {
                                 type="text"
                                 onChange={this.handleFieldChange}
                             />
-                            <label
-                            htmlFor="url"
-                            >
-                                URL
-                            </label>
-                            <input
-                                id="url"
-                                type="text"
-                                onChange={this.handleFieldChange}
-                            />
                         </div>
-                        <div className="formButton">
+                        <div className="formButton form">
                             <button
-                            className="button"
-                            id="news-article-button"
-                            onClick={this.createNewsObject}
+                                className="button"
+                                id="news-article-button"
+                                onClick={this.createNewsObject}
                             >
                                 Save News Article
                             </button>

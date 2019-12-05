@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewsManager from '../../modules/NewsManager'
 import NewsCard from './NewsCard'
+import Button from '@material-ui/core/Button'
 
 class NewsList extends Component {
     state = {
@@ -8,25 +9,25 @@ class NewsList extends Component {
     }
 
     
+
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
         NewsManager.getAll(currentUser)
-        .then(data => {
-            console.log("data", data)
+        .then(news => {
                 this.setState({
-                    news: data.news
+                    news: news
                 })
             })
     }
 
     deleteNewsArticle = (id) => {
-        const currentUser = localStorage.getItem("activeUser")
         NewsManager.delete(id)
         .then(() => {
+            const currentUser = localStorage.getItem("activeUser")
             NewsManager.getAll(currentUser)
-            .then(data => {
+            .then(news => {
                 this.setState({
-                    news: data.news
+                    news: news
                 })
             })
         })
@@ -37,13 +38,14 @@ class NewsList extends Component {
         return (
             <>  
             <section>
-                <button
+                <Button
+                    color="secondary"
                     id="add-news-article-button"
                     className="button"
                     onClick={() => { this.props.history.push("/newsform") }}
                 >
                     Add News Article
-        </button>
+        </Button>
             </section>
          
                 <div className="container-cards">
