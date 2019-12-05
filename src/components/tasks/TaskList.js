@@ -38,6 +38,10 @@ export default class TaskList extends Component {
             })
     }
 
+    editTaskName = (taskId) = {
+        
+    }
+
     render() {
         console.log(this.state.tasks)
         return (
