@@ -8,7 +8,7 @@ class MessageCard extends Component {
                 <div className="card-content">
                     
                     <h6>Time Stamp:</h6>
-                    <p>{this.props.messageEntry.message}</p>
+        <p>{this.props.messageEntry.user.username}{this.props.messageEntry.message}</p>
                     <button type="button">Edit</button>
                     <button type="button">Delete</button>
                 </div>
