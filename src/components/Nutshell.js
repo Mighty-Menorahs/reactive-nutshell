@@ -20,13 +20,13 @@ setUser = (signupObj) => {
     JSON.stringify(signupObj)
   )
   this.setState({
-    user: this.isAuthenticated()
+    user: this.isSignedup()
   });
 }
 
 componentDidMount(){
   this.setState({
-    user: this.isAuthenticated()
+    user: this.isSignedup()
   })
   // localStorage.setItem("activeUser", 1)
 }
