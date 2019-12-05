@@ -34,7 +34,7 @@ class NewsEditForm extends Component {
     }
     handleFieldChange = event => {
         const toChangeState = {}
-        toChangeState[event.target.className] = event.target.value
+        toChangeState[event.target.id] = event.target.value
         this.setState(toChangeState)
     }
     updateNewsItem = event => {
