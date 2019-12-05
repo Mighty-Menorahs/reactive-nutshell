@@ -4,42 +4,42 @@ import ApplicationViews from "./ApplicationViews";
 import "./Nutshell.css";
 
 class Nutshell extends Component {
-//   state ={
-//     user: false
-// }
+  state ={
+    user: false
+}
 
-// // Check Local Storage for matching Credentials
-// // returns boolean value
-// // moving Authentication to Nutshell.js from App.View
-// isSignedup = () => localStorage.getItem("credentials") !== null
+// Check Local Storage for matching Credentials
+// returns boolean value
+// moving Authentication to Nutshell.js from App.View
+isSignedup = () => localStorage.getItem("credentials") !== null
 
-// setUser = (regObj) => {
-//   // Set Store Email and password in local storage
-//   sessionStorage.setItem(
-//     "credentials",
-//     JSON.stringify(regObj)
-//   )
-//   this.setState({
-//     user: this.isAuthenticated()
-//   });
-// }
+setUser = (signupObj) => {
+  // Set Store Email and password in local storage
+  sessionStorage.setItem(
+    "credentials",
+    JSON.stringify(signupObj)
+  )
+  this.setState({
+    user: this.isAuthenticated()
+  });
+}
 
 componentDidMount(){
-  // this.setState({
-  //   user: this.isAuthenticated()
-  // })
-  localStorage.setItem("activeUser", 1)
+  this.setState({
+    user: this.isAuthenticated()
+  })
+  // localStorage.setItem("activeUser", 1)
 }
 
 render() {
     return (
       <React.Fragment>
         <NavBar 
-        // user={this.state.user} 
+        user={this.state.user} 
         />
         <ApplicationViews 
-        // user={this.state.user}
-        //                   setUser={this.setUser} 
+        user={this.state.user}
+                          setUser={this.setUser} 
                           />
       </React.Fragment>
     );
