@@ -9,6 +9,8 @@ import EventList from "./events/EventList";
 import EventDetail from "./events/EventDetail";
 import EventEditForm from "./events/EventEditForm";
 import EventForm from "./events/EventForm";
+import TaskList from "./tasks/TaskList"
+import TaskForm from "./tasks/TaskForm"
 
 export default class ApplicationViews extends Component {
 
@@ -44,10 +46,15 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
+        <Route exact
           path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
+            return <TaskList {...props} />
+          }}
+        />
+
+        <Route
+          path="/tasks/taskform" render={props => {
+            return <TaskForm {...props} />
           }}
         />
 
@@ -57,13 +64,13 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's events
           }}
         />
-        
+
         <Route exact path="/events/:eventId(\d+)" render={props => {
           return <EventDetail eventId={parseInt(props.match.params.eventId)}
-        {...props}
-        />
+            {...props}
+          />
         }} />
-        
+
         <Route exact path="/events/:eventId(\d+)/edit" render={props => {
           return <EventEditForm {...props} />
         }}
