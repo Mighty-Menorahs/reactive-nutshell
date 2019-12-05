@@ -28,7 +28,7 @@ class NewsCard extends Component {
 
     render() {
         return (
-            <div className="card">
+            <div className="newscard">
                 <Card>
                     <ul>
                         <li className="title">{this.props.newsItem.title}</li>

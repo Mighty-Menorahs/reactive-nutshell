@@ -1,10 +1,10 @@
 ul {
     list-style: none
 }
-.card {
+.newscard {
     width: 45%;
     margin: 25px auto;
-    padding: 0px 10px 8px 2px;
+    padding: 10px 10px 10px 2px;
     border: none;
     background-color: rgba(0, 0, 0, 0.01);
 }
