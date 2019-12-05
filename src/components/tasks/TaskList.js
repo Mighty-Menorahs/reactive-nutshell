@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import TaskCard from './TaskCard'
-import TasksManager from '../../modules/TasksManager'
 import API from '../../modules/TasksManager'
+
 
 export default class TaskList extends Component {
 
@@ -14,12 +14,28 @@ export default class TaskList extends Component {
         const appUserId = localStorage.getItem("activeUser")
         console.log(appUserId)
         API.getUserTasks(appUserId)
-        .then((taskArray) => {
-            console.log(taskArray)
-            this.setState({
-                tasks: taskArray
+            .then((taskArray) => {
+                console.log(taskArray)
+                this.setState({
+                    tasks: taskArray
+                })
             })
-        })
+    }
+
+    deleteTask = id => {
+        const appUserId = localStorage.getItem("activeUser")
+        console.log(appUserId)
+        API.delete(id)
+            .then(() => {
+                API.getUserTasks(appUserId)
+                    .then((taskArray) => {
+                        console.log("TASK ARRAY FROM DELETE METHOD", taskArray)
+                        this.setState({
+                            tasks: taskArray
+
+                        })
+                    })
+            })
     }
 
     render() {
@@ -28,20 +44,20 @@ export default class TaskList extends Component {
             <>
 
                 <div className="container-cards">
-                <h2>My To Do List</h2>
-                <Link to={`tasks/taskform`}><button type="button">Add New Task</button></Link>
+                    <h2>My To Do List</h2>
+                    <Link to={`/tasks/taskform`}><button type="button">Add New Task</button></Link>
 
                     {this.state.tasks.map(task =>
-                                <TaskCard
-                                key={task.id}
-                                task={task}
-                                //is "this.deleteTask in brackets because it's JS? But isn't the above task in curly brackets because it's an object?"
-                                deleteTask={this.deleteTask}
-                                {...this.props}
-                            />
-                        )}
-                    </div>
-                </>
-            )
-        }
+                        <TaskCard
+                            key={task.id}
+                            task={task}
+                            //is "this.deleteTask in brackets because it's JS? But isn't the above task in curly brackets because it's an object?"
+                            deleteTask={this.deleteTask}
+                            {...this.props}
+                        />
+                    )}
+                </div>
+            </>
+        )
     }
+}
