@@ -11,8 +11,6 @@ export default class TaskList extends Component {
     }
 
     componentDidMount() {
-        const userId = localStorage.getItem("activeUser")
-        TasksManager.getUserTasks(userId)
         const appUserId = localStorage.getItem("activeUser")
         console.log(appUserId)
         API.getUserTasks(appUserId)
