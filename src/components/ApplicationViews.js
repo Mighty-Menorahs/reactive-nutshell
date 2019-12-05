@@ -19,14 +19,14 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return null
+            return <Home />
             // Remove null and return the component which will show news articles
           }}
         />
 
         <Route
           exact path="/signup" render={props => {
-            return <SignUp {...props} />
+            return <SignUp setUser={this.props.setUser} {...props} />
             // Remove null and return the component which will handle user registration
           }}
         />
@@ -59,7 +59,11 @@ export default class ApplicationViews extends Component {
 
         <Route exact
           path="/events" render={props => {
+            if (this.props.user) {
             return <EventList {...props} />
+            } else {
+              return <Redirect to="/signup" />
+            }
             // Remove null and return the component which will show the user's events
           }}
         />
