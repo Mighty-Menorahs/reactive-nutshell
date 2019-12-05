@@ -12,7 +12,7 @@ export default class TaskCard extends Component {
                             <label htmlFor="checkbox">Done!</label>
 
                         <h3>Task:
-                  
+
      {/* onClick={() => }> */}
                             {this.props.task.task}</h3>
 
