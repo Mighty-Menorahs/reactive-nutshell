@@ -15,5 +15,14 @@ export default {
                 },
                 body: JSON.stringify(task)
             }).then(data => data.json())
+    },
+
+    delete(id) {
+        return fetch(`${baseUrl}tasks/${id}`, 
+        {
+            method: "DELETE",
+        })
+        .then(result => result.json())
     }
+
 }
