@@ -1,7 +1,6 @@
-// Purpose: to invoke and run each Component
-
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import Home from "./home/Home";
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
 import NewsEditForm from "./news/NewsEditForm"
@@ -15,6 +14,8 @@ import MessageForm from "./messages/MessageForm";
 import MessageEditForm from "./messages/MessageEditForm"
 import TaskList from "./tasks/TaskList"
 import TaskForm from "./tasks/TaskForm"
+import FriendsList from "./friends/FriendsList"
+import TaskEdit from "./tasks/TaskEdit"
 
 export default class ApplicationViews extends Component {
 
@@ -24,22 +25,21 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return null
+            return <Home {...props} />
             // Remove null and return the component which will show news articles
           }}
         />
 
         <Route
           exact path="/signup" render={props => {
-            return <SignUp {...props} />
+            return <SignUp setUser={this.props.setUser} {...props} />
             // Remove null and return the component which will handle user registration
           }}
         />
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return <FriendsList {...props} />
           }}
         />
 
@@ -72,9 +72,19 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        <Route
+          path="/tasks/taskId(\d+)/edit" render={props => {
+            return <TaskEdit {...props} />
+          }}
+        />
+
         <Route exact
           path="/events" render={props => {
+            if (this.props.user) {
             return <EventList {...props} />
+            } else {
+              return <Redirect to="/signup" />
+            }
             // Remove null and return the component which will show the user's events
           }}
         />
@@ -105,6 +115,10 @@ export default class ApplicationViews extends Component {
         />
         <Route path="/events/new" render={(props) => {
           return <EventForm {...props} />
+        }}
+        />
+        <Route path="/users" render={(props) => {
+          return <Home {...props} />
         }}
         />
       </React.Fragment>
