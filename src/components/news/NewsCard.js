@@ -40,7 +40,7 @@ class NewsCard extends Component {
                             size="small"
                             variant="outlined"
                             color="primary"
-                            className="B"
+                            className="button"
                             id={`news-edit-button--${this.props.newsItem.id}`}
                             onClick={() => this.props.history.push(`/news/${this.props.newsItem.id}/edit`)}
                         >Edit</Button>

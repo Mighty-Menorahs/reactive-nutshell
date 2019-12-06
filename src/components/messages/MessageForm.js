@@ -5,7 +5,7 @@ class MessageForm extends Component {
     state = {
         message: "",
         timeStamp: "",
-        // loadingStatus: false,
+        loadingStatus: false,
     }
 
     messageFieldChange = event => {
@@ -20,7 +20,7 @@ class MessageForm extends Component {
         if (this.state.message === "") {
             window.alert("Don't be shy...say something!");
         } else {
-            // this.setState({ loadingStatus: true });
+            this.setState({ loadingStatus: true });
             const message = {
                 message: this.state.message,
                 timeStamp: new Date(),
@@ -33,6 +33,7 @@ class MessageForm extends Component {
     };
 
     render() {
+        console.log(this.state)
         return (
             <>
                 <h3>Add New Message</h3>
@@ -40,12 +41,10 @@ class MessageForm extends Component {
                     <fieldset>
                         <div className="messageformbox">
                             <label htmlFor="new-message">Whatcha thinkin about?</label>
-                            <textarea
-                                rows="5"
-                                cols="75"
+                            <input
                                 required
                                 onChange={this.messageFieldChange}
-                                id="messageform"
+                                id="message"
                                 placeholder="Add text here..."
                             />
                         </div>
@@ -59,7 +58,7 @@ class MessageForm extends Component {
                                 disabled={this.state.loadingStatus}
                                 onClick={this.addNewMessage}
                             >
-                                Add Message
+                                Submit Message
                             </button>
                         </div>
                     </fieldset>
