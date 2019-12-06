@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import UsersManager from '../../modules/UsersManager';
 
 
 class SignUp extends Component {
@@ -9,7 +10,21 @@ class SignUp extends Component {
         password: "",
         confirmPassword: ""
     }
-
+    
+    setUser = (signupObj) => {
+        // Set Store Email and password in local storage
+        localStorage.setItem(
+          "activeUser",
+          JSON.stringify(signupObj)
+        )
+        this.setState({
+          user: this.isSignedup()
+        });
+      
+        UsersManager.post()
+        .then(newUser => this.setState({users: newUser}))
+      }
+    
     // Update State as the Registration Input Field is Utilized
     signUpFieldChange = (event) => {
         const stateToChange = {}
@@ -20,20 +35,20 @@ class SignUp extends Component {
     handleSignUpSubmit = (event) => {
         event.preventDefault()
         if ( this.state.password === this.state.confirmPassword ) {
-        // Storing The email and password and Username in local storage for customer.
-    // localStorage.setItem(
-    //     "credentials",
-    //     JSON.stringify({
-    //         email: this.state.email,
-    //         username: this.state.username,
-    //         password: this.state.password
-    //     })
-    // )
-    this.props.setUser({
-        email: this.state.email,
-        username: this.state.username,
-        password: this.state.password
-    })
+            // Storing The email and password and Username in local storage for customer.
+            localStorage.setItem(
+                    "activeUser",
+                    JSON.stringify({
+                            email: this.state.email,
+                            username: this.state.username,
+                            password: this.state.password
+                        })
+                    )
+                    this.props.setUser({
+                        email: this.state.email,
+                        username: this.state.username,
+                        password: this.state.password
+                    })
     this.props.history.push("/users");
     } else {
         window.alert("Why you suck, fields not match! Retry Password?");

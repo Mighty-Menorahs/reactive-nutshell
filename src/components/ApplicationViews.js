@@ -31,7 +31,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/signup" render={props => {
-            return <SignUp {...props} />
+            return <SignUp setUser={this.props.setUser} {...props} />
             // Remove null and return the component which will handle user registration
           }}
         />
