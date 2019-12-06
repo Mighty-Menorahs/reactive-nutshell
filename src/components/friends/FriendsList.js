@@ -5,6 +5,7 @@ import FriendCard from "./FriendCard"
 class FriendsList extends Component {
     state = {
         friends: [],
+        allFriends: [],
         username: "",
         userId: "",
         loggedInUserId: "",
@@ -13,14 +14,22 @@ class FriendsList extends Component {
 
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
-        FriendsManager.getAll(currentUser)
+        FriendsManager.getAllByUser(currentUser)
             .then(friendsWithUsers => {
                 console.log("raw data", friendsWithUsers)
-                    this.setState({
-                        friends: friendsWithUsers
-                    })
+                this.setState({
+                    friends: friendsWithUsers
+                })
             })
-                
+            .then( () => {
+                FriendsManager.getAll()
+                            .then(allFriends => {
+                                this.setState({
+                                    allFriends: allFriends
+                                })
+                            })
+                            console.log(this.state)
+                    })
     }
 
     handleFieldChange = (event) => {
@@ -36,21 +45,22 @@ class FriendsList extends Component {
     addNewFriend = (event) => {
         event.preventDefault()
         const currentUser = localStorage.getItem("activeUser")
-        this.state.friends.map(friend =>
-            {if (friend.user.username === this.state.username) {
-                const newFriend = {
-                    userId: Number(friend.userId),
-                    loggedInUserId: Number(currentUser)
-                }
-                console.log("New friend", newFriend)
-                // FriendsManager.post(newFriend)
-                //     .then(friends => FriendsManager.getAll(currentUser))
-            }
-            })
+        // debugger
+        // this.state.allFriends.forEach(friend => {
+        //     if (friend.user.username === this.state.username) {
+        //         const newFriend = {
+        //             userId: Number(friend.userId),
+        //             loggedInUserId: Number(currentUser)
+        //         }
+        //         console.log("New friend", newFriend)
+        //         FriendsManager.post(newFriend)
+        //             .then(friends => FriendsManager.getAll(currentUser))
+        //     }
+        // })
 
-            }
+    }
 
-    
+
 
     render() {
         console.log("friends in state", this.state.friends)
@@ -70,13 +80,13 @@ class FriendsList extends Component {
                         onClick={this.addNewFriend}
                     >Make A New Friend</button>
                 </div>
-                    {this.state.friends.map(friend =>
+                {this.state.friends.map(friend =>
                     <FriendCard
-                        key = {friend.id}
-                        user = {friend}
-                        { ...this.props }
-                    /> 
-                ) }}
+                        key={friend.id}
+                        user={friend}
+                        {...this.props}
+                    />
+                )}}
             </>
         )
     }
