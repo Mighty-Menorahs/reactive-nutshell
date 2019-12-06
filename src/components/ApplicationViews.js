@@ -13,6 +13,7 @@ import MessageList from "./messages/MessageList";
 import MessageForm from "./messages/MessageForm";
 import TaskList from "./tasks/TaskList"
 import TaskForm from "./tasks/TaskForm"
+import FriendsList from "./friends/FriendsList"
 import TaskEdit from "./tasks/TaskEdit"
 
 export default class ApplicationViews extends Component {
@@ -37,8 +38,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return <FriendsList {...props} />
           }}
         />
 
