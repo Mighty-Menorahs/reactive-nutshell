@@ -1,4 +1,4 @@
-![Getting Started](./ERD.jpg)
+
 
 # Reactive Nutshell: The Information Dashboard
 
@@ -52,4 +52,5 @@ Here is some sample data from the application.
 { "id": 1, "userId": 3, "task": "Take out garbage" }
 ```
 
+![Getting Started](./ERD.png)
 
