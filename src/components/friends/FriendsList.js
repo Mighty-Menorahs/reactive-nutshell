@@ -13,6 +13,7 @@ class FriendsList extends Component {
     }
 
     componentDidMount() {
+        console.log("component mounted")
         const currentUser = localStorage.getItem("activeUser")
         FriendsManager.getAllByUser(currentUser)
             .then(friendsWithUsers => {
@@ -45,20 +46,25 @@ class FriendsList extends Component {
     addNewFriend = (event) => {
         event.preventDefault()
         const currentUser = localStorage.getItem("activeUser")
-        // debugger
-        // this.state.allFriends.forEach(friend => {
-        //     if (friend.user.username === this.state.username) {
-        //         const newFriend = {
-        //             userId: Number(friend.userId),
-        //             loggedInUserId: Number(currentUser)
-        //         }
-        //         console.log("New friend", newFriend)
-        //         FriendsManager.post(newFriend)
-        //             .then(friends => FriendsManager.getAll(currentUser))
-        //     }
-        // })
-
-    }
+        this.state.allFriends.forEach(friend => {
+            {if (friend.username === this.state.username) {
+                const newFriend = {
+                    userId: Number(friend.id),
+                    loggedInUserId: Number(currentUser)
+                }
+                console.log("New friend", newFriend)
+                FriendsManager.post(newFriend)
+                    .then(friends => {
+                        FriendsManager.getAllByUser(currentUser)
+                        .then(friends => {
+                            this.setState({
+                                friends: friends
+                            })
+                        })
+                    })
+            }}
+    })
+}
 
 
 
