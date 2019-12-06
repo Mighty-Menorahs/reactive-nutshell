@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import FriendsManager from "../../modules/FriendsManager"
+import FriendCard from "./FriendCard"
 
 class FriendsList extends Component {
     state = {
-        friends: [],
+        friends: {},
         username: "",
         userId: "",
         loggedInUserId: "",
@@ -13,6 +14,11 @@ class FriendsList extends Component {
     componentDidMount() {
         const currentUser = localStorage.getItem("activeUser")
         FriendsManager.getAll(currentUser)
+            .then(friendsWithUsers => {
+                this.setState({
+                    friends: friendsWithUsers
+                })
+            })
     }
     handleFieldChange = (event) => {
         const stateToChange = {}
@@ -25,17 +31,27 @@ class FriendsList extends Component {
         })
     }
     addNewFriend = (event) => {
-            event.preventDefault()
-            const currentUser = localStorage.getItem("activeUser")
-            const friend = {
-                userId: this.state.userId,
-                loggedInUserId: Number(currentUser)
+        event.preventDefault()
+        const currentUser = localStorage.getItem("activeUser")
+        this.state.friends.map(friend =>
+            {if (friend.user.username === this.state.username) {
+                const newFriend = {
+                    userId: Number(friend.userId),
+                    loggedInUserId: Number(currentUser)
+                }
+                console.log("New friend", newFriend)
+                // FriendsManager.post(newFriend)
+                //     .then(friends => FriendsManager.getAll(currentUser))
             }
-            FriendsManager.post(friend)
-            .then(friends => FriendsManager.getAll(currentUser))
-        }
+            })
+
+            }
+
     
+
     render() {
+        console.log("friends in state", this.state.friends)
+        console.log("friends array", this.state.friends[0])
         return (
             <>
                 <div>
@@ -48,10 +64,17 @@ class FriendsList extends Component {
                         onChange={this.handleFieldChange}
                     />
                     <button
-                    hidden={!this.state.showInputField}
+                        hidden={!this.state.showInputField}
                         onClick={this.addNewFriend}
                     >Make A New Friend</button>
                 </div>
+                    {/* {this.state.friends.user.map(friend =>
+                    <FriendCard
+                        key = {friend.id}
+                        friend = {friend}
+                        { ...this.props }
+                    /> 
+                ) }} */}
             </>
         )
     }

@@ -6,6 +6,7 @@ class FriendCard extends Component {
     render() {
         return(
             <>
+            <h3>{this.props.friend.username}</h3>
             </>
         )
     }
