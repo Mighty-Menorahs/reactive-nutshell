@@ -17,16 +17,18 @@ isSignedup = () => localStorage.getItem("activeUser") !== null
 
 setUser = (signupObj) => {
   // Set Store Email and password in local storage
-  localStorage.setItem(
-    "activeUser",
-    JSON.stringify(signupObj)
-  )
   this.setState({
     user: this.isSignedup()
   });
-
-  UsersManager.post()
-  .then(newUser => this.setState({users: newUser}))
+  
+  UsersManager.post(signupObj)
+  .then(newUser => {
+    console.log("newUser", newUser)
+    localStorage.setItem(
+      "activeUser",
+      JSON.stringify(newUser)
+    )
+    this.setState({users: newUser})})
 }
 
 componentDidMount(){

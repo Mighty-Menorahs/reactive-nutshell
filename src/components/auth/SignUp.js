@@ -11,19 +11,19 @@ class SignUp extends Component {
         confirmPassword: ""
     }
     
-    setUser = (signupObj) => {
-        // Set Store Email and password in local storage
-        localStorage.setItem(
-          "activeUser",
-          JSON.stringify(signupObj)
-        )
-        this.setState({
-          user: this.isSignedup()
-        });
+    // setUser = (signupObj) => {
+    //     // Set Store Email and password in local storage
+    //     localStorage.setItem(
+    //       "activeUser",
+    //       JSON.stringify(signupObj)
+    //     )
+    //     this.setState({
+    //       user: this.isSignedup()
+    //     });
       
-        UsersManager.post()
-        .then(newUser => this.setState({users: newUser}))
-      }
+    //     UsersManager.post()
+    //     .then(newUser => this.setState({users: newUser}))
+    //   }
     
     // Update State as the Registration Input Field is Utilized
     signUpFieldChange = (event) => {
