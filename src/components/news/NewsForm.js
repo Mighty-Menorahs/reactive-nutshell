@@ -26,8 +26,9 @@ class NewsForm extends Component {
                 synopsis: this.state.synopsis,
                 url: this.state.url,
                 timestamp: new Date(),
-                userId: Number(localStorage.getItem("activeUser"))
+                userId: Number(JSON.parse(localStorage.getItem("activeUser")).id)
             }
+            console.log(news.userId)
             NewsManager.post(news)
                 .then(() => { this.props.history.push("/news") })
         }

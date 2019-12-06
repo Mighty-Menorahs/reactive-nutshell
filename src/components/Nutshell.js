@@ -36,8 +36,6 @@ componentDidMount(){
     user: this.isSignedup()
   });
   // localStorage.setItem("activeUser", 1)
-  UsersManager.post()
-    .then(users => this.setState({users: users}))
   UsersManager.getAllUsers()
     .then(users => this.setState({users: users}))
   }
