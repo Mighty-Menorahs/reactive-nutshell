@@ -1,4 +1,4 @@
-import Screen Shot 2019-12-05 at 10.37.15 PM.png from "/Users/nss4/Desktop/Screen Shot 2019-12-05 at 10.37.15 PM.png"
+![Getting Started](./ERD.jpg)
 
 # Reactive Nutshell: The Information Dashboard
 
