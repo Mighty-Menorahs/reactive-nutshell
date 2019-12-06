@@ -2,7 +2,7 @@ import React, { Component } from 'react'
     //import the components we will need
     import EventCard from './EventCard'
     import EventsManager from '../../modules/EventsManager'
-    
+    import "bootstrap/dist/css/bootstrap.min.css"
 
     class EventList extends Component {
         //define what this component needs to render
@@ -40,9 +40,9 @@ import React, { Component } from 'react'
         return(
           <React.Fragment>
             <section className="section-content">
-              <button type="button" className="btn"
+              <button type="button" className="btn text-primary bg-dark"
               onClick={() => {this.props.history.push("/events/new")}}>
-              Admit event
+              Create Event
           </button>
             </section>
           <div className="container-cards">
