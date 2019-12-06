@@ -1,6 +1,7 @@
-import { Route, Redirect } from "react-router-dom";
+// Purpose: to invoke and run each Component
+
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import Home from "./home/Home";
 import NewsList from "./news/NewsList"
 import NewsForm from "./news/NewsForm"
 import NewsEditForm from "./news/NewsEditForm"
@@ -23,14 +24,14 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return <Home {...props} />
+            return null
             // Remove null and return the component which will show news articles
           }}
         />
 
         <Route
           exact path="/signup" render={props => {
-            return <SignUp setUser={this.props.setUser} {...props} />
+            return <SignUp {...props} />
             // Remove null and return the component which will handle user registration
           }}
         />
@@ -74,11 +75,7 @@ export default class ApplicationViews extends Component {
 
         <Route exact
           path="/events" render={props => {
-            if (this.props.user) {
             return <EventList {...props} />
-            } else {
-              return <Redirect to="/signup" />
-            }
             // Remove null and return the component which will show the user's events
           }}
         />
@@ -109,10 +106,6 @@ export default class ApplicationViews extends Component {
         />
         <Route path="/events/new" render={(props) => {
           return <EventForm {...props} />
-        }}
-        />
-        <Route path="/users" render={(props) => {
-          return <Home {...props} />
         }}
         />
       </React.Fragment>
