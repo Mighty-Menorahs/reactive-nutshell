@@ -12,8 +12,5 @@ export default {
             },
             body: JSON.stringify(newFriend)
         }).then(friends => friends.json())
-    },
-    getUserByName() {
-        return fetch(`${baseUrl}/users`)
     }
 }

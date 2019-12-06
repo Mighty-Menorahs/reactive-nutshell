@@ -4,7 +4,8 @@ import FriendCard from "./FriendCard"
 
 class FriendsList extends Component {
     state = {
-        friends: {},
+        friends: [],
+        users: [],
         username: "",
         userId: "",
         loggedInUserId: "",
@@ -15,9 +16,13 @@ class FriendsList extends Component {
         const currentUser = localStorage.getItem("activeUser")
         FriendsManager.getAll(currentUser)
             .then(friendsWithUsers => {
-                this.setState({
-                    friends: friendsWithUsers
-                })
+                console.log("raw data", friendsWithUsers)
+                friendsWithUsers.map(friend =>
+                    this.setState({
+                        friends: friend,
+                        users: friend.user
+                    })
+                )
             })
     }
     handleFieldChange = (event) => {
@@ -51,7 +56,7 @@ class FriendsList extends Component {
 
     render() {
         console.log("friends in state", this.state.friends)
-        console.log("friends array", this.state.friends[0])
+
         return (
             <>
                 <div>
@@ -68,10 +73,10 @@ class FriendsList extends Component {
                         onClick={this.addNewFriend}
                     >Make A New Friend</button>
                 </div>
-                    {/* {this.state.friends.user.map(friend =>
+                    {/* {this.state.users.map(user =>
                     <FriendCard
-                        key = {friend.id}
-                        friend = {friend}
+                        key = {user.id}
+                        user = {user}
                         { ...this.props }
                     /> 
                 ) }} */}
